@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add FontAwesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Goodluck Books</title>
+    <link rel="stylesheet" href="..//headfoot/head.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="..//headfoot/foot.css">  <!-- Footer CSS -->
+    <link rel="icon" type="image/png" href="barlogo.png">
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header"></div>
+
+    <main class="about-us">
+        <section class="about-info">
+            <h1>About Goodluck Books</h1>
+            <p>At Goodluck Books, we believe that books have the power to change lives. We are an online bookstore that connects people with the stories, knowledge, and experiences that shape the world. Our goal is to make reading accessible to all.</p>
+        </section>
+
+        <section class="our-mission">
+            <h2>Our Mission</h2>
+            <p>Our mission is to offer an extensive library of books that inspire, educate, and entertain. Whether you're a lover of fiction, a seeker of knowledge, or a curious mind, our platform provides an easy and enjoyable way to access the best books in every category.</p>
+        </section>
+
+        <section class="our-values">
+            <h2>Our Values</h2>
+            <ul>
+                <li><strong>Empowerment:</strong> We believe in the power of books to empower individuals and communities.</li>
+                <li><strong>Inclusivity:</strong> We strive to ensure everyone, regardless of background, can find something they love.</li>
+                <li><strong>Integrity:</strong> We operate with honesty and transparency in everything we do, from our prices to our services.</li>
+                <li><strong>Collaboration:</strong> We work with authors, publishers, and readers to foster a collaborative reading ecosystem.</li>
+            </ul>
+        </section>
+
+        <section class="team">
+            <h2>Meet Our Team</h2>
+            <p>Our team is made up of passionate book lovers, from customer service experts to book curators. We are dedicated to providing you with personalized recommendations and a seamless shopping experience, ensuring that every reader finds their next great read with ease.</p>
+        </section>
+
+        <section class="our-history">
+            <h2>Our History</h2>
+            <p>Goodluck Books started as a small, independent bookstore with a vision to make books affordable for everyone. Over the years, we've grown into an online marketplace, but our core values of quality and customer-first remain unchanged. Join us in our journey to bring books to life!</p>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Function to load the content of the header and footer dynamically
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the file: ", error));
+        }
+
+        // Load header and footer
+        loadHTML('..//headfoot/header.html', 'header');
+        loadHTML('..//headfoot/footer.html', 'footer');
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Goodluck Books</title>
+    <link rel="stylesheet" href="..//headfoot/head.css">
+    <link rel="stylesheet" href="..//headfoot/foot.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header"></div>
+
+    <main>
+        <h1>Shopping Cart</h1>
+        <section class="cart-section">
+            <div class="cart-item">
+                <img src="images/book1.jpg" alt="Book 1">
+                <div class="item-details">
+                    <h2>Book Title</h2>
+                    <p>Author: John Doe</p>
+                    <p>Price: $15.99</p>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1">
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="cart-item">
+                <img src="images/book2.jpg" alt="Book 2">
+                <div class="item-details">
+                    <h2>Another Book Title</h2>
+                    <p>Author: Jane Doe</p>
+                    <p>Price: $12.99</p>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="2" min="1">
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer"></div>
+
+    
+    <script>
+        // Function to load the content of the header and footer dynamically
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the file: ", error));
+        }
+
+        // Load header and footer
+        loadHTML('..//headfoot/header.html', 'header');
+        loadHTML('..//headfoot/footer.html', 'footer');
+    </script>
+</body>
+</html>

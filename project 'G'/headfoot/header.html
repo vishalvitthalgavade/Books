@@ -1,0 +1,75 @@
+<!-- Header Section -->
+<div class="header">
+    <div class="top-bar">
+        <span>Contact Us: +91-8855001063 | factorygoodluck@gmail.com</span>
+    </div>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="home.html" style="text-decoration: none; color: inherit;">Goodluck Books</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="..//headinfo/home.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Shop</a>
+                <div class="dropdown-content">
+                    <a href="..//dropboxes/allproduct.html">All Products</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">On Sale</a>
+                    <a href="#">Limited Edition</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Categories</a>
+                <div class="dropdown-content">
+                    <a href="#">Fiction</a>
+                    <a href="#">Non-fiction</a>
+                    <a href="#">Self-Help</a>
+                    <a href="#">Children's Books</a>
+                    <a href="#">Biographies</a>
+                    <a href="#">Romance</a>
+                    <a href="#">Thriller</a>
+                    <a href="#">Fantasy</a>
+                    <a href="#">Science Fiction</a>
+                    <a href="#">Horror</a>
+                </div>
+            </li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="..//headinfo/contact.html">Contact</a></li>
+            <li><a href="..//headinfo/about.html">About Us</a></li>
+        </ul>
+        <!-- Right Side Icons -->
+        <div class="header-icons">
+            <a href="wishlist.html" class="header-icon" title="Wishlist">
+                <i class="fa fa-heart"></i>
+            </a>
+            <a href="cart.html" class="header-icon" title="Cart">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+            <a href="#" class="header-icon search-icon" title="Search">
+                <i class="fa fa-search"></i>
+            </a>
+            <a href="#" class="header-icon" title="Account">
+                <i class="fa fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <div id="search-bar" class="search-bar hidden">
+        <input type="text" placeholder="Search for books..." />
+        <button>Search</button>
+    </div>
+</div>
+
+
+
+<script>
+    const searchIcon = document.querySelector('.search-icon');
+    const searchBar = document.getElementById('search-bar');
+
+    searchIcon.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        searchBar.classList.toggle('hidden'); // Toggle the 'hidden' class
+    });
+</script>
