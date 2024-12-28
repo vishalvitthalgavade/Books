@@ -1,29 +1,24 @@
+<!-- Wishlist page (wishlist.html) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist - Goodluck Books</title>
-    <link rel="stylesheet" href="../headfoot/head.css">
-    <link rel="stylesheet" href="../headfoot/foot.css">
-    <link rel="stylesheet" href="wishlist.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="wishlist.css">
+  <link rel="stylesheet" href="../headfoot/head.css">
+  <link rel="stylesheet" href="../headfoot/foot.css">
 </head>
 <body>
-    <!-- Include Header -->
+
     <div id="header"></div>
-
-    <main>
-        <h1>Wishlist</h1>
-        <section class="wishlist-section" id="wishlist-items">
-            <!-- Wishlist items will be populated here dynamically -->
-        </section>
-    </main>
-
-    <!-- Include Footer -->
+    <h1>Your Wishlist</h1>
+    <div id="wishlist-container"></div>
     <div id="footer"></div>
 
     <script>
-        // Function to load the content of the header and footer dynamically
+        // Load header and footer
         function loadHTML(file, elementId) {
             fetch(file)
                 .then(response => response.text())
@@ -33,65 +28,54 @@
                 .catch(error => console.error("Error loading the file: ", error));
         }
 
-        // Load header and footer
         loadHTML('../headfoot/header.html', 'header');
         loadHTML('../headfoot/footer.html', 'footer');
 
-        // Function to display wishlist items
-        function displayWishlist() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const wishlistContainer = document.getElementById('wishlist-items');
-            wishlistContainer.innerHTML = ''; // Clear existing content
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            wishlist.forEach((item, index) => {
-                const wishlistItem = document.createElement('div');
-                wishlistItem.classList.add('wishlist-item');
-                wishlistItem.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <div class="item-details">
-                        <h2>${item.name}</h2>
-                        <p>Author: ${item.author}</p>
-                        <p>Price: $${item.price}</p>
-                        <button class="remove-btn" data-index="${index}">Remove</button>
-                        <button class="add-to-cart" data-product="${JSON.stringify(item)}">Add to Cart</button>
-                    </div>
-                `;
-                wishlistContainer.appendChild(wishlistItem);
-            });
+        function renderWishlist() {
+          const wishlistContainer = document.getElementById("wishlist-container");
+          wishlistContainer.innerHTML = "";
 
-            // Add event listeners to remove buttons
-            document.querySelectorAll('.remove-btn').forEach(button => {
-                button.addEventListener('click', (e) => removeFromWishlist(e.target.dataset.index));
-            });
+          if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+            return;
+          }
 
-            // Add event listeners to "Add to Cart" buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', (e) => addToCart(JSON.parse(e.target.dataset.product)));
-            });
+          wishlist.forEach((item, index) => {
+            const { image, title, description, price } = item;
+            const imagePath = `../bookimages/${image}`;  // Adjusted path to image folder
+
+            wishlistContainer.innerHTML += `
+              <div class="wishlist-item">
+                <img src="${imagePath}" alt="${title}" />
+                <p>${title}</p>
+                <p>${description}</p>
+                <h3>${price}</h3>
+                <button onclick="addToCart(${index})">Add to Cart</button>
+                <button onclick="removeFromWishlist(${index})">Remove</button>
+              </div>`;
+          });
         }
 
-        // Function to remove an item from the wishlist
+        function addToCart(index) {
+          const product = wishlist[index];
+          cart.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          wishlist.splice(index, 1);
+          localStorage.setItem("wishlist", JSON.stringify(wishlist));
+          renderWishlist();
+        }
+
         function removeFromWishlist(index) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist.splice(index, 1); // Remove the item from the array
-            localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Update localStorage
-            displayWishlist(); // Re-render the wishlist
+          wishlist.splice(index, 1);
+          localStorage.setItem("wishlist", JSON.stringify(wishlist));
+          renderWishlist();
         }
 
-        // Function to add product to cart
-        function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (!cart.find(item => item.name === product.name)) {
-                cart.push(product);
-                localStorage.setItem('cart', JSON.stringify(cart)); // Save to localStorage
-                alert(`${product.name} added to cart!`);
-            } else {
-                alert(`${product.name} is already in your cart.`);
-            }
-        }
-
-        // Call to render the wishlist when the page loads
-        document.addEventListener('DOMContentLoaded', displayWishlist);
+        renderWishlist();
     </script>
 </body>
 </html>

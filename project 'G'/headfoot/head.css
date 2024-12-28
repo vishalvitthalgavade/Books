@@ -194,22 +194,39 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Georgia', serif;
 }
 
+/* Align the arrow with the text */
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures arrow is at the end */
+    padding-right: 10px; /* Add some space between text and arrow */
+}
 
+/* Adjust the size and position of the arrow icon */
+.dropdown > a i {
+    font-size: 12px; /* Adjust size as needed */
+    margin-left: 5px; /* Space between text and arrow */
+    transition: transform 0.3s ease; /* Smooth rotation */
+}
 
+/* Rotate the arrow on hover or active state */
+.dropdown:hover > a i {
+    transform: rotate(180deg); /* Arrow points up when hovered */
+}
 
+/* Dropdown content styles */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(56, 53, 53);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 
 
