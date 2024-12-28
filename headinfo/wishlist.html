@@ -1,0 +1,82 @@
+<!-- Wishlist page (wishlist.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="wishlist.css">
+  <link rel="stylesheet" href="../headfoot/head.css">
+  <link rel="stylesheet" href="../headfoot/foot.css">
+  <link rel="icon" type="image/png" href="..//images/barlogo.png"> 
+</head>
+<body>
+
+    <div id="header"></div>
+    <h1>Your Wishlist</h1>
+    <div id="wishlist-container"></div>
+    <div id="footer"></div>
+
+    <script>
+        // Load header and footer
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the file: ", error));
+        }
+
+        loadHTML('../headfoot/header.html', 'header');
+        loadHTML('../headfoot/footer.html', 'footer');
+
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function renderWishlist() {
+          const wishlistContainer = document.getElementById("wishlist-container");
+          wishlistContainer.innerHTML = "";
+
+          if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+            return;
+          }
+
+          wishlist.forEach((item, index) => {
+            const { image, title, description, price } = item;
+            const imagePath = `../bookimages/${image}`;  // Adjusted path to image folder
+
+            wishlistContainer.innerHTML += `
+              <div class="wishlist-item">
+                <img src="${imagePath}" alt="${title}" />
+                <p>${title}</p>
+                <p>${description}</p>
+                <h3>${price}</h3>
+                <button onclick="addToCart(${index})">Add to Cart</button>
+                <button onclick="removeFromWishlist(${index})">Remove</button>
+              </div>`;
+          });
+        }
+
+        function addToCart(index) {
+          const product = wishlist[index];
+          cart.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          wishlist.splice(index, 1);
+          localStorage.setItem("wishlist", JSON.stringify(wishlist));
+          renderWishlist();
+        }
+
+        function removeFromWishlist(index) {
+          wishlist.splice(index, 1);
+          localStorage.setItem("wishlist", JSON.stringify(wishlist));
+          renderWishlist();
+        }
+
+        renderWishlist();
+    </script>
+</body>
+</html>

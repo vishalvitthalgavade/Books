@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add FontAwesome CDN for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Goodluck Books</title>
+    <link rel="stylesheet" href="..//headfoot/head.css">
+    <link rel="stylesheet" href="..//headfoot/foot.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="icon" type="image/png" href="..//images/barlogo.png"> 
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header"></div>
+
+    <main class="contact-page">
+        <section class="contact-info">
+            <h1>Contact Us</h1>
+            <p>If you have any questions, feel free to reach out to us. Our customer service team will be happy to assist you!</p>
+            <div class="contact-details">
+                <p><strong>Phone:</strong> +91-8855001063</p>
+                <p><strong>Email:</strong> factorygoodluck@gmail.com</p>
+                <p><strong>Address:</strong> Goodluck Stationery, Five star MIDC, Kolhapur, India</p>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="submit_contact.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Function to load the content of the header and footer
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the file: ", error));
+        }
+
+        // Load header and footer
+        loadHTML('..//headfoot/header.html', 'header');
+        loadHTML('..//headfoot/footer.html', 'footer');
+    </script>
+</body>
+</html>

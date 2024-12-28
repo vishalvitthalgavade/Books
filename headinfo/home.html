@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add FontAwesome CDN for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodluck Books - Your Online Bookstore</title>
+    <link rel="stylesheet" href="..//headfoot/head.css">
+    <link rel="stylesheet" href="..//headfoot/foot.css">
+    <link rel="icon" type="image/png" href="..//images/barlogo.png"> 
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!-- Include Header -->
+    <div id="header"></div>
+
+    <!-- Main Banner Section -->
+    <section class="main-banner">
+        <div class="banner-content">
+            <h1>Discover Your Next Great Read</h1>
+            <p>Explore our vast collection of books across genres and categories.</p>
+            <a href="..//shop/allproduct.html" class="explore-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Decorative Images Section -->
+    <section class="decorative-images">
+        <img src="..//images/image1.jpg" alt="Decorative Image 1" class="decorative-image">
+        <img src="..//images/image2.jpg" alt="Decorative Image 2" class="decorative-image">
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <h2>Wide Collection</h2>
+            <p>From timeless fiction to insightful non-fiction, we have something for every reader. Explore our diverse range of genres and find your next great read!</p>
+            <ul>
+                <li><strong>Fiction:</strong> Bestsellers, contemporary reads, and timeless classics.</li>
+                <li><strong>Non-fiction:</strong> True stories, educational books, biographies, and self-help.</li>
+                <li><strong>Children's Books:</strong> Fun and engaging stories for young minds.</li>
+                <li><strong>Best Sellers:</strong> Trending titles loved by readers worldwide.</li>
+                <li><strong>New Arrivals:</strong> Be the first to discover our newest releases.</li>
+                <li><strong>Rare Finds & Collectibles:</strong> Limited editions and rare books for the true collector.</li>
+                <li><strong>Genre-Specific:</strong> Explore fantasy, romance, sci-fi, thriller, and more.</li>
+            </ul>
+        </div>
+    
+        <div class="feature">
+            <h2>Free Shipping</h2>
+            <p>Enjoy free delivery on orders over 500₹ across all locations. No hidden charges, just great service and fast delivery.</p>
+            <ul>
+                <li><strong>Fast Delivery:</strong> Get your order delivered in record time.</li>
+                <li><strong>International Shipping:</strong> Shop from anywhere with our global shipping options.</li>
+            </ul>
+        </div>
+    
+        <div class="feature">
+            <h2>Exclusive Offers</h2>
+            <p>Grab amazing deals and discounts on your favorite books!</p>
+            <ul>
+                <li><strong>Seasonal Sales:</strong> Get up to 50% off during our limited-time sales.</li>
+                <li><strong>Bundle Deals:</strong> Buy 2, Get 1 Free on select items.</li>
+                <li><strong>Members-Only Discounts:</strong> Sign up for our newsletter to receive exclusive offers.</li>
+            </ul>
+        </div>
+    </section>
+    
+
+    <!-- Include Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Function to load the content of the header and footer
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the file: ", error));
+        }
+
+        // Load header and footer
+        loadHTML('..//headfoot/header.html', 'header');
+        loadHTML('..//headfoot/footer.html', 'footer');
+    </script>
+
+</body>
+</html>
