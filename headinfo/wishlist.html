@@ -36,29 +36,29 @@
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
         function renderWishlist() {
-          const wishlistContainer = document.getElementById("wishlist-container");
-          wishlistContainer.innerHTML = "";
+    const wishlistContainer = document.getElementById("wishlist-container");
+    wishlistContainer.innerHTML = "";
 
-          if (wishlist.length === 0) {
-            wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
-            return;
-          }
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+        return;
+    }
 
-          wishlist.forEach((item, index) => {
-            const { image, title, description, price } = item;
-            const imagePath = `../bookimages/${image}`;  // Adjusted path to image folder
+    wishlist.forEach((item, index) => {
+        const { img, title, description, price } = item;
 
-            wishlistContainer.innerHTML += `
-              <div class="wishlist-item">
-                <img src="${imagePath}" alt="${title}" />
+        wishlistContainer.innerHTML += `
+            <div class="wishlist-item">
+                <img src="${img}" alt="${title}" />
                 <p>${title}</p>
                 <p>${description}</p>
                 <h3>${price}</h3>
                 <button onclick="addToCart(${index})">Add to Cart</button>
                 <button onclick="removeFromWishlist(${index})">Remove</button>
-              </div>`;
-          });
-        }
+            </div>`;
+    });
+}
+
 
         function addToCart(index) {
           const product = wishlist[index];

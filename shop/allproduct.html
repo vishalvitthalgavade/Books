@@ -69,8 +69,8 @@
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p>${product.price}</p>
-                    <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to Cart</button>
-                    <button class="add-to-wishlist" data-product='${JSON.stringify(product)}'>Add to Wishlist</button>
+                    <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to Cart  <i class="fas fa-cart-plus"></i></button>
+                    <button class="add-to-wishlist" data-product='${JSON.stringify(product)}'>Add to Wishlist <i class="fas fa-heart"></i></button>
                 </div>
             `;
             productList.innerHTML += productItem;

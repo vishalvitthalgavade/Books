@@ -50,53 +50,46 @@
     }
 
     // Function to render the cart
-    function renderCart() {
-      const cartContainer = document.getElementById("cart-container");
-      const totalElement = document.getElementById("total");
-      cartContainer.innerHTML = "";
+    // Function to render the cart
+function renderCart() {
+    const cartContainer = document.getElementById("cart-container");
+    const totalElement = document.getElementById("total");
+    cartContainer.innerHTML = "";
 
-      let total = 0;
+    let total = 0;
 
-      if (cart.length === 0) {
+    if (cart.length === 0) {
         cartContainer.innerHTML = "<p>Your cart is empty.</p>";
         totalElement.textContent = "₹0.00";
         document.getElementById('checkout-container').style.display = 'none'; // Hide checkout button if cart is empty
         return;
-      }
+    }
 
-      cart.forEach((item, index) => {
-        const { image, title, price } = item;
+    cart.forEach((item, index) => {
+        const { img, name, description, price } = item;
         
         // Ensure price is a number by removing any non-numeric characters (e.g., "₹")
         const numericPrice = parseFloat(price.toString().replace(/[^0-9.]/g, ""));
         total += numericPrice;
 
-        // Adjust image source path to be from 'images' folder
         cartContainer.innerHTML += `
-          <div class="cart-item">
-            <div class="cart-item-details">
-              <img src="../bookimages/${image}" alt="${title}" class="cart-item-image"/>
-              <div class="cart-item-info">
-                <p class="cart-item-title">${title}</p>
-                <h3>₹${numericPrice.toFixed(2)}</h3>
-              </div>
-            </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
-          </div>`;
-      });
+            <div class="cart-item">
+                <div class="cart-item-details">
+                    <img src="${img}" alt="${name}" class="cart-item-image"/>
+                    <div class="cart-item-info">
+                        <p class="cart-item-title">${name}</p>
+                        <p class="cart-item-description">${description}</p>
+                        <h3>₹${numericPrice.toFixed(2)}</h3>
+                    </div>
+                </div>
+                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            </div>`;
+    });
 
-      totalElement.textContent = `₹${total.toFixed(2)}`;
-      document.getElementById('checkout-container').style.display = 'block'; // Show checkout button
-    }
-
-    // Function to handle checkout action
-    function proceedToCheckout() {
-      // You can implement the actual checkout functionality here
-      alert("Proceeding to checkout..."); // Placeholder for now
-    }
-
-    // Initial render of the cart
-    renderCart();
+    totalElement.textContent = `₹${total.toFixed(2)}`;
+    document.getElementById('checkout-container').style.display = 'block'; // Show checkout button
+}
+ renderCart()
   </script>
 </body>
 </html>

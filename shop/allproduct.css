@@ -188,37 +188,34 @@ button:hover {
         width: 100%;
     }
 }
+/* Apply blur effect to body when modal is active */
+body.modal-open {
+    filter: blur(5px); /* Adjust the blur intensity */
+    pointer-events: none; /* Prevent interaction with background content */
+}
+
 /* Modal Styles */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
-    z-index: 1; /* Sit on top */
-    left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark background */
+    z-index: 1000;
+    display: none;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    border-radius: 10px;
 }
