@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="head.css">
+</head>
+<body>
+    <header class="main-header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="contact-info">
+                        <a href="tel:+1234567890" class="contact-link">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+1 234 567 890</span>
+                        </a>
+                        <a href="mailto:info@goodluckbooks.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@goodluckbooks.com</span>
+                        </a>
+                    </div>
+                    <div class="top-bar-right">
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <a href="../headinfo/home.html" class="logo-link">
+                            <img src="../images/barlogo.png" alt="Goodluck Books Logo" class="logo-img">
+                            <span class="logo-text">Goodluck Books</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-links">
+                        <a href="../headinfo/home.html" class="nav-link">Home</a>
+                        <a href="../headinfo/allproduct.html" class="nav-link">Books</a>
+                        <a href="../headinfo/about.html" class="nav-link">About</a>
+                        <a href="../headinfo/contact.html" class="nav-link">Contact</a>
+                    </div>
+
+                    <div class="search-container">
+                        <div class="search-bar">
+                            <input type="text" 
+                                   placeholder="Search books, authors, categories..." 
+                                   aria-label="Search books"
+                                   class="search-input">
+                            <button type="button" class="search-btn" aria-label="Search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="user-actions">
+                        <a href="../headinfo/cart.html" class="action-link cart-link" aria-label="Shopping Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="action-count cart-count">0</span>
+                        </a>
+                        <a href="../headinfo/wishlist.html" class="action-link wishlist-link" aria-label="Wishlist">
+                            <i class="fas fa-heart"></i>
+                            <span class="action-count wishlist-count">0</span>
+                        </a>
+                        <div class="user-dropdown">
+                            <button class="user-btn" aria-label="User menu">
+                                <i class="fas fa-user"></i>
+                                <span class="user-text">Account</span>
+                            </button>
+                            <div class="dropdown-content">
+                                <!-- Authentication Links (shown when not logged in) -->
+                                <div class="auth-links">
+                                    <a href="../headinfo/login.html" class="dropdown-link">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                        <span>Login</span>
+                                    </a>
+                                    <a href="../headinfo/signup.html" class="dropdown-link">
+                                        <i class="fas fa-user-plus"></i>
+                                        <span>Sign Up</span>
+                                    </a>
+                                </div>
+                                <!-- User Links (shown when logged in) -->
+                                <div class="user-links">
+                                    <a href="#" class="dropdown-link">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span>My Profile</span>
+                                    </a>
+                                    <a href="#" class="dropdown-link">
+                                        <i class="fas fa-shopping-bag"></i>
+                                        <span>My Orders</span>
+                                    </a>
+                                    <a href="#" class="dropdown-link" id="logoutBtn">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-search">
+                    <input type="text" placeholder="Search books..." aria-label="Search books">
+                    <button type="button" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="mobile-menu-close" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-links">
+                <a href="../headinfo/home.html" class="mobile-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="../headinfo/allproduct.html" class="mobile-link">
+                    <i class="fas fa-book"></i>
+                    <span>Books</span>
+                </a>
+                <a href="../headinfo/about.html" class="mobile-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="../headinfo/contact.html" class="mobile-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+                <a href="../headinfo/cart.html" class="mobile-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="mobile-count cart-count">0</span>
+                </a>
+                <a href="../headinfo/wishlist.html" class="mobile-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                    <span class="mobile-count wishlist-count">0</span>
+                </a>
+                <div class="mobile-auth-links">
+                    <a href="../headinfo/login.html" class="mobile-link login-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                    <a href="../headinfo/signup.html" class="mobile-link signup-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+                <div class="mobile-user-links" style="display: none;">
+                    <a href="../headinfo/profile.html" class="mobile-link">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="../headinfo/orders.html" class="mobile-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Orders</span>
+                    </a>
+                    <a href="#" class="mobile-link logout-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        // Check authentication status
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const authLinks = document.querySelector('.auth-links');
+            const userLinks = document.querySelector('.user-links');
+            const mobileAuthLinks = document.querySelector('.mobile-auth-links');
+            const mobileUserLinks = document.querySelector('.mobile-user-links');
+
+            if (token) {
+                // User is logged in
+                if (authLinks) authLinks.style.display = 'none';
+                if (userLinks) userLinks.style.display = 'flex';
+                if (mobileAuthLinks) mobileAuthLinks.style.display = 'none';
+                if (mobileUserLinks) mobileUserLinks.style.display = 'flex';
+            } else {
+                // User is not logged in
+                if (authLinks) authLinks.style.display = 'flex';
+                if (userLinks) userLinks.style.display = 'none';
+                if (mobileAuthLinks) mobileAuthLinks.style.display = 'flex';
+                if (mobileUserLinks) mobileUserLinks.style.display = 'none';
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            checkAuth();
+            window.location.href = '../headinfo/home.html';
+        }
+
+        // Add logout event listeners
+        document.querySelectorAll('.logout-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleLogout();
+            });
+        });
+
+        // Update cart and wishlist counts
+        function updateCounts() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+                
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const wishlistCount = wishlist.length;
+                
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = cartCount;
+                });
+                
+                document.querySelectorAll('.wishlist-count').forEach(el => {
+                    el.textContent = wishlistCount;
+                });
+            } catch (error) {
+                console.error('Error updating counts:', error);
+            }
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuClose.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Search functionality
+        const searchInputs = document.querySelectorAll('.search-bar input, .mobile-search input');
+        const searchBtns = document.querySelectorAll('.search-bar button, .mobile-search button');
+
+        function handleSearch(input) {
+            const searchTerm = input.value.trim();
+            if (searchTerm) {
+                window.location.href = `../headinfo/allproduct.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+
+        searchBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => handleSearch(searchInputs[index]));
+        });
+
+        searchInputs.forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleSearch(input);
+                }
+            });
+        });
+
+        // User dropdown functionality
+        const userDropdown = document.querySelector('.user-dropdown');
+        const userBtn = document.querySelector('.user-btn');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        // Toggle dropdown on button click
+        userBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            userDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+
+        // Handle dropdown link clicks
+        document.querySelectorAll('.dropdown-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                if (href) {
+                    window.location.href = href;
+                }
+                userDropdown.classList.remove('active');
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            updateCounts();
+        });
+
+        // Update counts when storage changes
+        window.addEventListener('storage', updateCounts);
+
+        // Update counts when page becomes visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                updateCounts();
+            }
+        });
+
+        // Update counts periodically
+        setInterval(updateCounts, 1000);
+    </script>
+</body>
+</html>

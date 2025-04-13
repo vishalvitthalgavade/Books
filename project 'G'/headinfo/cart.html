@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Goodluck Books</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="../headfoot/head.css">
+    <link rel="stylesheet" href="../headfoot/foot.css">
+    <link rel="icon" type="image/png" href="../images/barlogo.png">
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1>Your Shopping Cart</h1>
+            <p class="cart-intro">Review and manage your selected items</p>
+        </div>
+
+        <div class="cart-content">
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">₹0.00</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn">
+                    <i class="fas fa-lock"></i>
+                    Proceed to Checkout
+                </button>
+                <button class="continue-shopping-btn" onclick="window.location.href='../headinfo/allproduct.html'">
+                    <i class="fas fa-shopping-bag"></i>
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Function to load the header and footer
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error("Error loading file: ", error));
+        }
+
+        loadHTML('../headfoot/header.html', 'header');
+        loadHTML('../headfoot/footer.html', 'footer');
+
+        // Function to update cart display
+        function updateCartDisplay() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cartItems');
+            let subtotal = 0;
+
+            if (cartItems.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your Cart is Empty</h3>
+                        <p>Looks like you haven't added any items to your cart yet.</p>
+                        <button class="continue-shopping-btn" onclick="window.location.href='../shop/allproduct.html'">
+                            <i class="fas fa-shopping-bag"></i>
+                            Continue Shopping
+                        </button>
+                    </div>
+                `;
+                document.getElementById('checkoutBtn').disabled = true;
+                document.getElementById('subtotal').textContent = '₹0.00';
+                document.getElementById('total').textContent = '₹0.00';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            cartItems.forEach(item => {
+                const price = item.price; // Price is already a number
+                const itemTotal = price * (item.quantity || 1);
+                subtotal += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="item-image">
+                        <img src="${item.img}" alt="${item.name}">
+                    </div>
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p class="item-author">${item.author}</p>
+                        <div class="item-price">
+                            <span class="current-price">₹${item.price.toFixed(2)}</span>
+                            <span class="original-price">₹${item.originalPrice.toFixed(2)}</span>
+                            <span class="discount">${item.discount}</span>
+                        </div>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                        <span class="quantity">${item.quantity || 1}</span>
+                        <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                    </div>
+                    <div class="item-total">
+                        ₹${itemTotal.toFixed(2)}
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('total').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('checkoutBtn').disabled = false;
+        }
+
+        // Event delegation for quantity buttons and remove buttons
+        document.getElementById('cartItems').addEventListener('click', (e) => {
+            const target = e.target;
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (target.classList.contains('decrease') || target.classList.contains('increase')) {
+                const id = parseInt(target.getAttribute('data-id'));
+                const item = cartItems.find(item => item.id === id);
+                
+                if (target.classList.contains('decrease')) {
+                    if (item.quantity > 1) {
+                        item.quantity--;
+                    } else {
+                        cartItems.splice(cartItems.indexOf(item), 1);
+                    }
+                } else {
+                    item.quantity = (item.quantity || 1) + 1;
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                updateCartDisplay();
+            }
+
+            if (target.classList.contains('remove-item') || target.closest('.remove-item')) {
+                const id = parseInt(target.getAttribute('data-id') || target.closest('.remove-item').getAttribute('data-id'));
+                const updatedCart = cartItems.filter(item => item.id !== id);
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+                updateCartDisplay();
+            }
+        });
+
+        // Checkout button functionality
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            // Add your checkout logic here
+            alert('Proceeding to checkout...');
+        });
+
+        // Initial cart display
+        updateCartDisplay();
+    </script>
+</body>
+</html>
